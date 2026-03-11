@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Areas | Aether Remodeling Houston</title>
+    <!-- Google Fonts & Font Awesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- External CSS (shared) -->
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Inline styles for service areas page – to be merged into style.css later */
+        :root {
+            --gold: #b79a5f;
+            --charcoal: #1a1a1a;
+            --light-bg: #f9f9f9;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; color: #1a1a1a; line-height: 1.5; background: #fff; }
+        .container { max-width: 1440px; margin: 0 auto; padding: 0 40px; }
+        .section-title { font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 500; margin-bottom: 20px; }
+        .section-sub { color: #666; max-width: 700px; margin-bottom: 50px; font-size: 1.2rem; }
+
+        /* Navigation (copy from previous pages) */
+        .navbar { position: fixed; top: 0; left: 0; width: 100%; padding: 20px 40px; display: flex; align-items: center; justify-content: space-between; z-index: 1000; transition: 0.3s; color: white; background: transparent; }
+        .navbar.scrolled { background: #fff; color: var(--charcoal); box-shadow: 0 4px 20px rgba(0,0,0,0.05); padding: 15px 40px; }
+        .navbar.scrolled .nav-links a { color: var(--charcoal); }
+        .navbar.scrolled .phone { color: var(--charcoal); }
+        .navbar.scrolled .estimate-cta { background: var(--gold); color: #000; border: none; }
+        .logo { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 600; }
+        .gold-dot { color: var(--gold); }
+        .nav-links { display: flex; gap: 40px; list-style: none; font-weight: 500; }
+        .nav-links li { position: relative; }
+        .nav-links a { color: white; text-decoration: none; }
+        .nav-links li ul.dropdown { display: none; position: absolute; top: 100%; left: 0; background: #fff; box-shadow: 0 10px 20px rgba(0,0,0,0.1); padding: 10px 0; min-width: 200px; z-index: 1000; border-radius: 8px; }
+        .nav-links li:hover ul.dropdown { display: block; }
+        .nav-links li ul.dropdown li { padding: 8px 20px; }
+        .nav-links li ul.dropdown li a { color: #333; white-space: nowrap; }
+        .navbar.scrolled .nav-links li ul.dropdown li a { color: #333; }
+        .nav-right { display: flex; align-items: center; gap: 30px; }
+        .phone { font-weight: 600; color: white; }
+        .estimate-cta { background: transparent; border: 1px solid rgba(255,255,255,0.3); padding: 10px 24px; border-radius: 40px; font-weight: 600; color: white; text-decoration: none; transition: 0.3s; }
+        .estimate-cta:hover { background: var(--gold); color: #000; border-color: var(--gold); }
+        .hamburger { display: none; font-size: 1.8rem; cursor: pointer; color: white; }
+        @media (max-width: 1024px) { .nav-links { gap: 20px; } .nav-right { gap: 15px; } }
+        @media (max-width: 768px) { .navbar { padding: 15px 24px; } .nav-links, .nav-right .phone { display: none; } .hamburger { display: block; } }
+
+        /* Hero */
+        .areas-hero { position: relative; height: 70vh; min-height: 600px; background: url('https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=1400') center/cover; display: flex; align-items: center; color: white; text-align: center; }
+        .areas-hero .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); }
+        .hero-content { position: relative; z-index: 2; max-width: 900px; margin: 0 auto; }
+        .hero-content h1 { font-size: 4rem; font-weight: 600; margin-bottom: 20px; }
+        .hero-content p { font-size: 1.5rem; margin-bottom: 30px; opacity: 0.9; }
+
+        /* Intro text */
+        .intro-text { font-size: 1.25rem; color: #444; max-width: 900px; margin: 60px auto; text-align: center; }
+
+        /* City grid */
+        .city-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px; margin-top: 40px; }
+        .city-card { background: #fff; border-radius: 24px; padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.03); transition: 0.3s; border: 1px solid #eee; text-decoration: none; color: inherit; display: block; }
+        .city-card:hover { transform: translateY(-6px); box-shadow: 0 20px 30px rgba(0,0,0,0.06); border-color: var(--gold); }
+        .city-icon { font-size: 2.5rem; color: var(--gold); margin-bottom: 15px; }
+        .city-card h3 { font-size: 2rem; font-family: 'Playfair Display', serif; margin-bottom: 10px; }
+        .city-desc { color: #666; margin-bottom: 20px; }
+        .city-link { color: var(--gold); font-weight: 600; }
+
+        /* Map placeholder */
+        .map-section { background: var(--light-bg); border-radius: 40px; padding: 60px; margin: 80px 0; text-align: center; }
+        .map-placeholder { width: 100%; max-width: 1000px; margin: 40px auto; border-radius: 30px; overflow: hidden; box-shadow: 0 20px 30px rgba(0,0,0,0.1); }
+        .map-placeholder img { width: 100%; display: block; }
+
+        /* Featured projects by area */
+        .project-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 40px; }
+        .project-card { border-radius: 24px; overflow: hidden; background: #fff; box-shadow: 0 5px 20px rgba(0,0,0,0.02); transition: 0.3s; }
+        .project-card:hover { transform: translateY(-6px); box-shadow: 0 20px 30px rgba(0,0,0,0.08); }
+        .project-card img { width: 100%; height: 220px; object-fit: cover; }
+        .project-info { padding: 25px; }
+        .project-info h3 { font-size: 1.6rem; margin-bottom: 5px; }
+        .project-info .location { color: var(--gold); font-weight: 500; margin-bottom: 10px; }
+        .card-link { color: var(--gold); text-decoration: none; font-weight: 600; }
+
+        /* Local testimonials */
+        .testimonial-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin: 40px 0; }
+        .testimonial-card { background: var(--light-bg); border-radius: 30px; padding: 30px; }
+        .stars { color: var(--gold); font-size: 1.3rem; margin-bottom: 15px; }
+        .client-location { font-weight: 600; margin-top: 15px; color: var(--gold); }
+
+        /* CTA */
+        .final-cta { background: var(--charcoal); color: white; text-align: center; border-radius: 60px; margin: 40px; padding: 80px 40px; }
+        .btn-primary { background: var(--gold); color: #000; padding: 14px 32px; border-radius: 40px; font-weight: 600; text-decoration: none; display: inline-block; margin: 0 10px; border: none; transition: 0.3s; }
+        .btn-primary:hover { background: #a68950; transform: translateY(-2px); }
+        .btn-secondary { background: transparent; color: #fff; padding: 14px 32px; border-radius: 40px; font-weight: 600; text-decoration: none; display: inline-block; margin: 0 10px; border: 1px solid rgba(255,255,255,0.3); transition: 0.3s; }
+        .btn-secondary:hover { background: rgba(255,255,255,0.1); border-color: #fff; }
+
+        /* Footer */
+        .footer { background: var(--charcoal); color: #aaa; padding: 60px 40px 30px; margin-top: 80px; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 2fr; gap: 40px; }
+        .footer-logo { font-family: 'Playfair Display', serif; font-size: 2rem; color: white; margin-bottom: 15px; }
+        .footer a { color: #ccc; text-decoration: none; transition: 0.2s; }
+        .footer a:hover { color: var(--gold); }
+        .footer-col ul { list-style: none; }
+        .footer-col li { margin: 10px 0; }
+        .social-links i { font-size: 1.8rem; margin-right: 15px; }
+        .footer-bottom { text-align: center; margin-top: 60px; border-top: 1px solid #333; padding-top: 30px; }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .project-grid, .testimonial-grid { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 768px) {
+            .project-grid, .testimonial-grid, .footer-grid { grid-template-columns: 1fr; }
+            .hero-content h1 { font-size: 2.8rem; }
+            .final-cta { margin: 20px; padding: 50px 20px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVIGATION with dropdowns (identical to other pages) -->
+    <nav class="navbar" id="navbar">
+        <div class="logo">Aether<span class="gold-dot">.</span></div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li>
+                <a href="#">Services <i class="fas fa-chevron-down"></i></a>
+                <ul class="dropdown">
+                    <li><a href="#">Kitchen Remodeling</a></li>
+                    <li><a href="#">Bathroom Remodeling</a></li>
+                    <li><a href="#">Whole Home Renovation</a></li>
+                    <li><a href="#">Home Additions</a></li>
+                    <li><a href="#">Interior Renovations</a></li>
+                    <li><a href="#">Exterior Renovations</a></li>
+                    <li><a href="#">Custom Cabinetry</a></li>
+                </ul>
+            </li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li>
+                <a href="servicesarea.html">Service Areas <i class="fas fa-chevron-down"></i></a>
+                <ul class="dropdown">
+                    <li><a href="#">Houston</a></li>
+                    <li><a href="#">Sugar Land</a></li>
+                    <li><a href="#">Katy</a></li>
+                    <li><a href="#">The Woodlands</a></li>
+                    <li><a href="#">Pearland</a></li>
+                    <li><a href="#">Cypress</a></li>
+                    <li><a href="#">Missouri City</a></li>
+                    <li><a href="#">Pasadena</a></li>
+                    <li><a href="#">League City</a></li>
+                    <li><a href="#">Spring</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+        <div class="nav-right">
+            <span class="phone"><i class="fas fa-phone-alt"></i> (713) 555-7234</span>
+            <a href="#" class="estimate-cta">Free Estimate</a>
+        </div>
+        <div class="hamburger"><i class="fas fa-bars"></i></div>
+    </nav>
+
+    <!-- 1. HERO SECTION -->
+    <section class="areas-hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content container">
+            <h1>Home Remodeling Services Across Houston & Surrounding Areas</h1>
+            <p>Serving homeowners in Houston, Sugar Land, Katy, The Woodlands, and more with premium remodeling services.</p>
+            <a href="#" class="btn-primary">Get a Free Estimate</a>
+        </div>
+    </section>
+
+    <!-- 2. INTRODUCTORY TEXT -->
+    <div class="container">
+        <p class="intro-text">We provide full-service home remodeling to homeowners throughout the Houston metropolitan area. Our team delivers kitchen, bathroom, and whole-home renovations with precision and care. With decades of experience and a commitment to premium craftsmanship, we are the trusted choice for luxury renovations across the region.</p>
+    </div>
+
+    <!-- 3. LIST OF SERVICE AREAS (CITY BLOCKS) -->
+    <section class="container">
+        <h2 class="section-title">Areas we serve</h2>
+        <div class="city-grid">
+            <a href="#" class="city-card">
+                <div class="city-icon"><i class="fas fa-city"></i></div>
+                <h3>Houston, TX</h3>
+                <p class="city-desc">Full-service kitchen, bathroom, and whole-home renovations in the heart of Houston.</p>
+                <span class="city-link">Learn more →</span>
+            </a>
+            <a href="#" class="city-card">
+                <div class="city-icon"><i class="fas fa-city"></i></div>
+                <h3>Sugar Land, TX</h3>
+                <p class="city-desc">Luxury remodels for Sugar Land homeowners – from bathrooms to additions.</p>
+                <span class="city-link">Learn more →</span>
+            </a>
+            <a href="#" class="city-card">
+                <div class="city-icon"><i class="fas fa-city"></i></div>
+                <h3>Katy, TX</h3>
+                <p class="city-desc">Custom kitchens and whole‑home transformations in Katy and surrounding areas.</p>
+                <span class="city-link">Learn more →</span>
+            </a>
+            <a href="#" class="city-card">
+                <div class="city-icon"><i class="fas fa-city"></i></div>
+                <h3>The Woodlands, TX</h3>
+                <p class="city-desc">Premium craftsmanship for homes in The Woodlands – interior & exterior.</p>
+                <span class="city-link">Learn more →</span>
+            </a>
+            <a href="#" class="city-card">
+                <div class="city-icon"><i class="fas fa-city"></i></div>
+                <h3>Pearland, TX</h3>
+                <p class="city-desc">Complete home remodeling services in Pearland, including additions and custom cabinets.</p>
+                <span class="city-link">Learn more →</span>
+            </a>
+            <a href="#" class="city-card">
+                <div class="city-icon"><i class="fas fa-city"></i></div>
+                <h3>Pasadena, TX</h3>
+                <p class="city-desc">Quality renovations for Pasadena homeowners – kitchens, baths, and more.</p>
+                <span class="city-link">Learn more →</span>
+            </a>
+            <a href="#" class="city-card">
+                <div class="city-icon"><i class="fas fa-city"></i></div>
+                <h3>Cypress, TX</h3>
+                <p class="city-desc">Luxury interior and exterior renovations in Cypress with dedicated project management.</p>
+                <span class="city-link">Learn more →</span>
+            </a>
+            <a href="#" class="city-card">
+                <div class="city-icon"><i class="fas fa-city"></i></div>
+                <h3>Spring, TX</h3>
+                <p class="city-desc">Whole‑home and kitchen remodeling in Spring, TX – from concept to completion.</p>
+                <span class="city-link">Learn more →</span>
+            </a>
+            <a href="#" class="city-card">
+                <div class="city-icon"><i class="fas fa-city"></i></div>
+                <h3>League City, TX</h3>
+                <p class="city-desc">Beautiful bathroom and kitchen remodels in League City and nearby.</p>
+                <span class="city-link">Learn more →</span>
+            </a>
+            <a href="#" class="city-card">
+                <div class="city-icon"><i class="fas fa-city"></i></div>
+                <h3>Missouri City, TX</h3>
+                <p class="city-desc">Trusted remodeling contractor in Missouri City – home additions and renovations.</p>
+                <span class="city-link">Learn more →</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- 4. MAP SECTION (Optional interactive map placeholder) -->
+    <section class="map-section container">
+        <h2 class="section-title" style="color: var(--charcoal);">Our coverage area</h2>
+        <p class="section-sub">We proudly serve the entire Houston metro, from The Woodlands to Pearland.</p>
+        <div class="map-placeholder">
+            <img src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?w=1200" alt="Houston metro map">
+            <p style="margin-top: 20px; color: #555;"><i class="fas fa-map-marker-alt" style="color: var(--gold);"></i> Click any city to see dedicated project galleries</p>
+        </div>
+    </section>
+
+    <!-- 5. FEATURED PROJECTS BY AREA -->
+    <section class="container">
+        <h2 class="section-title">Featured projects by area</h2>
+        <div class="project-grid">
+            <div class="project-card">
+                <img src="https://images.unsplash.com/photo-1556911220-bff6a9057e6f?w=600" alt="Katy kitchen">
+                <div class="project-info">
+                    <h3>Modern Farmhouse Kitchen</h3>
+                    <p class="location">Katy, TX</p>
+                    <p>Custom cabinetry, quartz island, and walk-in pantry.</p>
+                    <a href="#" class="card-link">View Project →</a>
+                </div>
+            </div>
+            <div class="project-card">
+                <img src="https://images.unsplash.com/photo-1588854337236-6889d631faa8?w=600" alt="Sugar Land bath">
+                <div class="project-info">
+                    <h3>Luxury Bathroom Remodel</h3>
+                    <p class="location">Sugar Land, TX</p>
+                    <p>Marble walls, freestanding tub, heated floors.</p>
+                    <a href="#" class="card-link">View Project →</a>
+                </div>
+            </div>
+            <div class="project-card">
+                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600" alt="The Woodlands whole home">
+                <div class="project-info">
+                    <h3>Whole Home Renovation</h3>
+                    <p class="location">The Woodlands, TX</p>
+                    <p>Complete interior & exterior transformation.</p>
+                    <a href="#" class="card-link">View Project →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. LOCAL TESTIMONIALS (optional) -->
+    <section class="container">
+        <h2 class="section-title">What our clients say across Houston</h2>
+        <div class="testimonial-grid">
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p>“The kitchen remodel in our Katy home exceeded all expectations! Beautiful craftsmanship and on time.”</p>
+                <div class="client-location">— Lisa M., Katy, TX</div>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p>“Aether transformed our master bath in Sugar Land into a spa. Professional team from start to finish.”</p>
+                <div class="client-location">— David & Lisa, Sugar Land, TX</div>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p>“We used Aether for a whole home renovation in The Woodlands. They communicated daily and delivered quality.”</p>
+                <div class="client-location">— The Harrisons, The Woodlands, TX</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. CALL-TO-ACTION SECTION -->
+    <section class="final-cta">
+        <div class="cta-content">
+            <h2 style="font-size: 3rem; margin-bottom: 20px;">Ready to Remodel Your Home in Houston or Nearby Cities?</h2>
+            <div class="cta-buttons">
+                <a href="#" class="btn-primary">Get Free Estimate</a>
+                <a href="#" class="btn-secondary">Call Now</a>
+            </div>
+            <p style="margin-top: 30px; color: #ccc;">Or call us at <strong>(713) 555-0123</strong> to speak with a designer.</p>
+        </div>
+    </section>
+
+    <!-- 8. FOOTER -->
+    <footer class="footer">
+        <div class="footer-grid container">
+            <div class="footer-col">
+                <div class="footer-logo">Aether<span class="gold-dot">.</span></div>
+                <p>Luxury home remodeling in Houston, TX.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-pinterest"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <p><i class="fas fa-phone-alt"></i> (713) 555-0123</p>
+                <p><i class="fas fa-envelope"></i> info@aetherhtx.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> 2424 Westheimer Rd, Houston, TX 77098</p>
+            </div>
+            <div class="footer-col">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="#">Kitchen Remodeling</a></li>
+                    <li><a href="#">Bathroom Remodeling</a></li>
+                    <li><a href="#">Whole Home Remodeling</a></li>
+                    <li><a href="#">Home Additions</a></li>
+                    <li><a href="#">Custom Cabinetry</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Service Areas</h4>
+                <ul>
+                    <li><a href="#">Houston</a></li>
+                    <li><a href="#">Sugar Land</a></li>
+                    <li><a href="#">Katy</a></li>
+                    <li><a href="#">The Woodlands</a></li>
+                    <li><a href="#">Pearland</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom container">
+            <p>&copy; 2025 Aether Construction. All rights reserved. | <a href="#">Privacy Policy</a></p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for navbar scroll and map interactivity (optional) -->
+    <script>
+        window.addEventListener('scroll', function() {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) nav.classList.add('scrolled');
+            else nav.classList.remove('scrolled');
+        });
+
+        // Optional: interactive map click simulation (just for demo)
+        document.querySelectorAll('.city-card').forEach(card => {
+            card.addEventListener('click', (e) => {
+                // In real implementation, link to dedicated city page
+                // e.preventDefault(); // if we want to simulate alert
+                // alert('Navigate to city page: ' + card.querySelector('h3').innerText);
+            });
+        });
+    </script>
+</body>
+</html>
