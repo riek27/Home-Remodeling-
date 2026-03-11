@@ -3,152 +3,415 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog | Calem Custom Homes</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;800&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Remodeling Tips, Trends & Insights | Aether Houston</title>
+    <!-- Google Fonts & Font Awesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- External CSS (shared) -->
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Inline styles for blog page – to be merged into style.css later */
+        :root {
+            --gold: #b79a5f;
+            --charcoal: #1a1a1a;
+            --light-bg: #f9f9f9;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; color: #1a1a1a; line-height: 1.5; background: #fff; }
+        .container { max-width: 1440px; margin: 0 auto; padding: 0 40px; }
+        .section-title { font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 500; margin-bottom: 20px; }
+        .section-sub { color: #666; max-width: 700px; margin-bottom: 50px; font-size: 1.2rem; }
+
+        /* Navigation (identical to previous pages) */
+        .navbar { position: fixed; top: 0; left: 0; width: 100%; padding: 20px 40px; display: flex; align-items: center; justify-content: space-between; z-index: 1000; transition: 0.3s; color: white; background: transparent; }
+        .navbar.scrolled { background: #fff; color: var(--charcoal); box-shadow: 0 4px 20px rgba(0,0,0,0.05); padding: 15px 40px; }
+        .navbar.scrolled .nav-links a { color: var(--charcoal); }
+        .navbar.scrolled .phone { color: var(--charcoal); }
+        .navbar.scrolled .estimate-cta { background: var(--gold); color: #000; border: none; }
+        .logo { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 600; }
+        .gold-dot { color: var(--gold); }
+        .nav-links { display: flex; gap: 40px; list-style: none; font-weight: 500; }
+        .nav-links li { position: relative; }
+        .nav-links a { color: white; text-decoration: none; }
+        .nav-links li ul.dropdown { display: none; position: absolute; top: 100%; left: 0; background: #fff; box-shadow: 0 10px 20px rgba(0,0,0,0.1); padding: 10px 0; min-width: 200px; z-index: 1000; border-radius: 8px; }
+        .nav-links li:hover ul.dropdown { display: block; }
+        .nav-links li ul.dropdown li { padding: 8px 20px; }
+        .nav-links li ul.dropdown li a { color: #333; white-space: nowrap; }
+        .navbar.scrolled .nav-links li ul.dropdown li a { color: #333; }
+        .nav-right { display: flex; align-items: center; gap: 30px; }
+        .phone { font-weight: 600; color: white; }
+        .estimate-cta { background: transparent; border: 1px solid rgba(255,255,255,0.3); padding: 10px 24px; border-radius: 40px; font-weight: 600; color: white; text-decoration: none; transition: 0.3s; }
+        .estimate-cta:hover { background: var(--gold); color: #000; border-color: var(--gold); }
+        .hamburger { display: none; font-size: 1.8rem; cursor: pointer; color: white; }
+        @media (max-width: 1024px) { .nav-links { gap: 20px; } .nav-right { gap: 15px; } }
+        @media (max-width: 768px) { .navbar { padding: 15px 24px; } .nav-links, .nav-right .phone { display: none; } .hamburger { display: block; } }
+
+        /* Hero */
+        .blog-hero { position: relative; height: 60vh; min-height: 500px; background: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1400') center/cover; display: flex; align-items: center; color: white; text-align: center; }
+        .blog-hero .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); }
+        .hero-content { position: relative; z-index: 2; max-width: 800px; margin: 0 auto; }
+        .hero-content h1 { font-size: 4rem; font-weight: 600; margin-bottom: 20px; }
+        .hero-content p { font-size: 1.5rem; margin-bottom: 30px; opacity: 0.9; }
+
+        /* Featured posts */
+        .featured-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 40px; }
+        .blog-card { background: #fff; border-radius: 24px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.02); transition: 0.3s; }
+        .blog-card:hover { transform: translateY(-6px); box-shadow: 0 20px 30px rgba(0,0,0,0.06); }
+        .blog-card img { width: 100%; height: 240px; object-fit: cover; }
+        .blog-content { padding: 30px; }
+        .blog-content h3 { font-size: 1.8rem; margin-bottom: 10px; font-family: 'Playfair Display', serif; }
+        .blog-meta { color: var(--gold); font-size: 0.9rem; margin-bottom: 15px; }
+        .blog-excerpt { color: #444; margin-bottom: 20px; }
+        .read-more { color: var(--gold); font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 5px; }
+        .read-more:hover { color: #8a6e45; }
+
+        /* Categories filter */
+        .category-filter { display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; margin: 50px 0 30px; }
+        .cat-btn { background: transparent; border: 1px solid #ddd; padding: 12px 28px; border-radius: 40px; font-weight: 600; cursor: pointer; transition: 0.3s; }
+        .cat-btn.active, .cat-btn:hover { background: var(--gold); border-color: var(--gold); color: #000; }
+
+        /* Main blog area with sidebar */
+        .blog-layout { display: grid; grid-template-columns: 2fr 1fr; gap: 60px; margin-top: 40px; }
+        .post-list { display: flex; flex-direction: column; gap: 40px; }
+        .post-item { display: grid; grid-template-columns: 200px 1fr; gap: 25px; background: #fff; border-radius: 24px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.02); transition: 0.3s; }
+        .post-item:hover { box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
+        .post-item img { width: 100%; height: 180px; object-fit: cover; }
+        .post-item-content { padding: 20px 20px 20px 0; }
+        .post-item-content h3 { font-size: 1.8rem; margin-bottom: 8px; }
+        .post-meta { color: var(--gold); margin-bottom: 12px; font-size: 0.9rem; }
+        .post-excerpt { color: #555; margin-bottom: 15px; }
+
+        /* Sidebar */
+        .sidebar { background: var(--light-bg); border-radius: 30px; padding: 40px 30px; }
+        .sidebar-widget { margin-bottom: 40px; }
+        .sidebar-widget h4 { font-size: 1.6rem; font-family: 'Playfair Display', serif; margin-bottom: 20px; border-bottom: 2px solid var(--gold); padding-bottom: 10px; }
+        .sidebar ul { list-style: none; }
+        .sidebar li { margin: 15px 0; }
+        .sidebar a { color: #444; text-decoration: none; transition: 0.2s; }
+        .sidebar a:hover { color: var(--gold); }
+        .search-form { display: flex; }
+        .search-input { flex: 1; padding: 14px 18px; border: 1px solid #ddd; border-radius: 40px 0 0 40px; font-size: 1rem; outline: none; }
+        .search-btn { background: var(--gold); border: none; padding: 14px 20px; border-radius: 0 40px 40px 0; cursor: pointer; font-weight: 600; transition: 0.3s; }
+        .search-btn:hover { background: #a68950; }
+        .cta-sidebar { background: var(--charcoal); color: white; padding: 30px; border-radius: 24px; text-align: center; }
+        .cta-sidebar .btn-primary { margin-top: 15px; display: inline-block; }
+
+        /* CTA section */
+        .final-cta { background: var(--charcoal); color: white; text-align: center; border-radius: 60px; margin: 60px 40px; padding: 80px 40px; }
+        .btn-primary { background: var(--gold); color: #000; padding: 14px 32px; border-radius: 40px; font-weight: 600; text-decoration: none; display: inline-block; margin: 0 10px; border: none; transition: 0.3s; }
+        .btn-primary:hover { background: #a68950; transform: translateY(-2px); }
+        .btn-secondary { background: transparent; color: #fff; padding: 14px 32px; border-radius: 40px; font-weight: 600; text-decoration: none; display: inline-block; margin: 0 10px; border: 1px solid rgba(255,255,255,0.3); transition: 0.3s; }
+        .btn-secondary:hover { background: rgba(255,255,255,0.1); border-color: #fff; }
+
+        /* Footer */
+        .footer { background: var(--charcoal); color: #aaa; padding: 60px 40px 30px; margin-top: 80px; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 2fr; gap: 40px; }
+        .footer-logo { font-family: 'Playfair Display', serif; font-size: 2rem; color: white; margin-bottom: 15px; }
+        .footer a { color: #ccc; text-decoration: none; transition: 0.2s; }
+        .footer a:hover { color: var(--gold); }
+        .footer-col ul { list-style: none; }
+        .footer-col li { margin: 10px 0; }
+        .social-links i { font-size: 1.8rem; margin-right: 15px; }
+        .footer-bottom { text-align: center; margin-top: 60px; border-top: 1px solid #333; padding-top: 30px; }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .featured-grid { grid-template-columns: 1fr 1fr; }
+            .blog-layout { grid-template-columns: 1fr; }
+            .post-item { grid-template-columns: 1fr; }
+            .post-item img { height: 250px; }
+            .post-item-content { padding: 20px; }
+        }
+        @media (max-width: 768px) {
+            .featured-grid { grid-template-columns: 1fr; }
+            .hero-content h1 { font-size: 2.8rem; }
+            .final-cta { margin: 20px; padding: 50px 20px; }
+            .footer-grid { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
 <body>
-    <!-- Header & Navigation -->
-    <header id="header">
-        <div class="container nav-container">
-            <a href="index.html" class="logo">Calem <span>Homes</span></a>
-            <button class="hamburger" id="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <ul class="nav-links" id="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="gallery.html">Portfolio</a></li>
-                <li><a href="blog.html">Blog</a></li>
-                <li><a href="testimonials.html">Testimonials</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
+    <!-- NAVIGATION with dropdowns (identical to other pages) -->
+    <nav class="navbar" id="navbar">
+        <div class="logo">Aether<span class="gold-dot">.</span></div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li>
+                <a href="#">Services <i class="fas fa-chevron-down"></i></a>
+                <ul class="dropdown">
+                    <li><a href="#">Kitchen Remodeling</a></li>
+                    <li><a href="#">Bathroom Remodeling</a></li>
+                    <li><a href="#">Whole Home Renovation</a></li>
+                    <li><a href="#">Home Additions</a></li>
+                    <li><a href="#">Interior Renovations</a></li>
+                    <li><a href="#">Exterior Renovations</a></li>
+                    <li><a href="#">Custom Cabinetry</a></li>
+                </ul>
+            </li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li>
+                <a href="#">Service Areas <i class="fas fa-chevron-down"></i></a>
+                <ul class="dropdown">
+                    <li><a href="#">Houston</a></li>
+                    <li><a href="#">Sugar Land</a></li>
+                    <li><a href="#">Katy</a></li>
+                    <li><a href="#">The Woodlands</a></li>
+                    <li><a href="#">Pearland</a></li>
+                    <li><a href="#">Cypress</a></li>
+                    <li><a href="#">Missouri City</a></li>
+                    <li><a href="#">Pasadena</a></li>
+                    <li><a href="#">League City</a></li>
+                    <li><a href="#">Spring</a></li>
+                </ul>
+            </li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+        <div class="nav-right">
+            <span class="phone"><i class="fas fa-phone-alt"></i> (713) 555-7234</span>
+            <a href="#" class="estimate-cta">Free Estimate</a>
         </div>
-    </header>
+        <div class="hamburger"><i class="fas fa-bars"></i></div>
+    </nav>
 
-    <!-- Page Hero -->
-    <section class="hero" style="height: 70vh; background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');">
-        <div class="hero-content">
-            <h1>Blog & Insights</h1>
-            <p>Expert advice, trends, and inspiration for your custom home project</p>
-        </div>
-    </section>
-
-    <!-- Blog Posts -->
-    <section id="blog-posts">
-        <div class="container">
-            <div class="section-header">
-                <h2>LATEST ARTICLES</h2>
-                <p>Stay informed with the latest in custom home building and remodeling</p>
-            </div>
-            
-            <div class="blog-grid">
-                <div class="blog-card">
-                    <img src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Sustainable home with solar panels">
-                    <div class="blog-card-content">
-                        <h3>Sustainable Building Practices for Custom Homes</h3>
-                        <p>Explore how Calem Custom Homes incorporates eco-friendly materials and energy-efficient systems into our projects without compromising luxury.</p>
-                        <a href="#" class="btn">Read More</a>
-                    </div>
-                </div>
-                <div class="blog-card">
-                    <img src="https://images.unsplash.com/photo-1616594039964-ae9021a400a0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Smart home technology control panel">
-                    <div class="blog-card-content">
-                        <h3>Integrating Smart Home Technology</h3>
-                        <p>Learn how to seamlessly incorporate smart home features into your custom home design for convenience, security, and energy efficiency.</p>
-                        <a href="#" class="btn">Read More</a>
-                    </div>
-                </div>
-                <div class="blog-card">
-                    <img src="https://images.unsplash.com/photo-1600607687644-c7171b42498b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Luxury basement home theater">
-                    <div class="blog-card-content">
-                        <h3>Maximizing Your Basement Space</h3>
-                        <p>Discover creative ideas for transforming your basement into functional living space that adds value and enjoyment to your home.</p>
-                        <a href="#" class="btn">Read More</a>
-                    </div>
-                </div>
-                <div class="blog-card">
-                    <img src="https://images.unsplash.com/photo-1617104552189-181715d89b32?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Outdoor kitchen and living area">
-                    <div class="blog-card-content">
-                        <h3>Creating the Ultimate Outdoor Living Space</h3>
-                        <p>Tips for designing outdoor areas that extend your living space and connect your home with nature in beautiful Colorado.</p>
-                        <a href="#" class="btn">Read More</a>
-                    </div>
-                </div>
-                <div class="blog-card">
-                    <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Luxury kitchen design">
-                    <div class="blog-card-content">
-                        <h3>Kitchen Design Trends for 2025</h3>
-                        <p>Explore the latest trends in kitchen design, from layout innovations to material selections and color palettes.</p>
-                        <a href="#" class="btn">Read More</a>
-                    </div>
-                </div>
-                <div class="blog-card">
-                    <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Luxury bathroom design">
-                    <div class="blog-card-content">
-                        <h3>Designing a Spa-Like Master Bathroom</h3>
-                        <p>Learn how to create a master bathroom that feels like a personal spa retreat with luxurious finishes and thoughtful design.</p>
-                        <a href="#" class="btn">Read More</a>
-                    </div>
-                </div>
-            </div>
+    <!-- 1. HERO SECTION -->
+    <section class="blog-hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content container">
+            <h1>Remodeling Tips, Trends & Insights</h1>
+            <p>Expert advice for homeowners in Houston to plan, design, and renovate their homes.</p>
+            <a href="#" class="btn-primary">Get a Free Estimate</a>
         </div>
     </section>
 
-    <!-- Newsletter -->
-    <section class="newsletter">
-        <div class="container">
-            <h3>Stay Updated with Our Latest Insights</h3>
-            <p>Subscribe to our newsletter for the latest trends, tips, and inspiration for your custom home project.</p>
-            <form class="newsletter-form" id="newsletterForm">
-                <input type="email" placeholder="Enter your email address" required>
-                <button type="submit" class="btn">Subscribe</button>
-            </form>
-            <p style="font-size: 0.9rem; margin-top: 15px;">We will not share your email.</p>
+    <!-- 2. FEATURED BLOG ARTICLES -->
+    <section class="container" style="margin-top: 80px;">
+        <h2 class="section-title">Featured articles</h2>
+        <div class="featured-grid">
+            <div class="blog-card">
+                <img src="https://images.unsplash.com/photo-1556911220-bff6a9057e6f?w=600" alt="Kitchen">
+                <div class="blog-content">
+                    <h3>Kitchen Remodeling Cost in Houston: What to Expect</h3>
+                    <div class="blog-meta"><i class="far fa-calendar-alt"></i> March 10, 2026</div>
+                    <p class="blog-excerpt">From budget breakdowns to ROI, learn the real costs of a luxury kitchen renovation in Houston.</p>
+                    <a href="#" class="read-more">Read More →</a>
+                </div>
+            </div>
+            <div class="blog-card">
+                <img src="https://images.unsplash.com/photo-1588854337236-6889d631faa8?w=600" alt="Bathroom">
+                <div class="blog-content">
+                    <h3>5 Bathroom Design Trends for Houston Homes in 2026</h3>
+                    <div class="blog-meta"><i class="far fa-calendar-alt"></i> February 22, 2026</div>
+                    <p class="blog-excerpt">Spa-like showers, warm minimalism, and smart mirrors — what’s trending in Houston bathrooms.</p>
+                    <a href="#" class="read-more">Read More →</a>
+                </div>
+            </div>
+            <div class="blog-card">
+                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600" alt="Whole home">
+                <div class="blog-content">
+                    <h3>How to Plan a Home Renovation Without Stress</h3>
+                    <div class="blog-meta"><i class="far fa-calendar-alt"></i> January 15, 2026</div>
+                    <p class="blog-excerpt">A step‑by‑step guide to timelines, budgets, and working with contractors in Houston.</p>
+                    <a href="#" class="read-more">Read More →</a>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>Calem Custom Homes</h3>
-                    <p>Building exceptional custom homes with perfection and quality for over 20 years.</p>
-                </div>
-                <div class="footer-column">
-                    <h3>Contact Info</h3>
-                    <p>Fort Collins, Colorado</p>
-                    <p>970-219-7474</p>
-                    <p>calemcustomhomes@hotmail.com</p>
-                </div>
-                <div class="footer-column">
-                    <h3>Quick Links</h3>
-                    <a href="index.html">Home</a>
-                    <a href="about.html">About</a>
-                    <a href="services.html">Services</a>
-                    <a href="gallery.html">Portfolio</a>
-                    <a href="blog.html">Blog</a>
-                    <a href="contact.html">Contact</a>
-                </div>
-                <div class="footer-column">
-                    <h3>Our Companies</h3>
-                    <a href="#">Executive Basements</a>
-                    <a href="#">Executive Kitchen & Bath</a>
-                    <a href="#">Executive Exteriors</a>
-                    <a href="#">Granite Specialties</a>
+    <!-- 3. BLOG CATEGORIES / FILTER -->
+    <div class="container">
+        <div class="category-filter">
+            <button class="cat-btn active" data-cat="all">All</button>
+            <button class="cat-btn" data-cat="kitchen">Kitchen Remodeling</button>
+            <button class="cat-btn" data-cat="bathroom">Bathroom Remodeling</button>
+            <button class="cat-btn" data-cat="wholehome">Whole Home Renovations</button>
+            <button class="cat-btn" data-cat="additions">Home Additions</button>
+            <button class="cat-btn" data-cat="design">Design & Trends</button>
+            <button class="cat-btn" data-cat="tips">Tips & Advice</button>
+        </div>
+    </div>
+
+    <!-- 4. BLOG POST LISTING + SIDEBAR -->
+    <section class="container blog-layout">
+        <!-- Main posts -->
+        <div class="post-list" id="post-list">
+            <!-- Post 1 -->
+            <div class="post-item" data-category="kitchen">
+                <img src="https://images.unsplash.com/photo-1556911220-bff6a9057e6f?w=600" alt="Kitchen cost">
+                <div class="post-item-content">
+                    <h3>Kitchen Remodeling Cost in Houston: 2026 Guide</h3>
+                    <div class="post-meta"><i class="far fa-calendar-alt"></i> March 10, 2026 • <i class="fas fa-tag"></i> Kitchen</div>
+                    <p class="post-excerpt">We break down average costs per square foot, material pricing, and how to maximize your investment in Houston.</p>
+                    <a href="#" class="read-more">Read More →</a>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>Copyright © 2025 Calem Custom Homes. All Rights Reserved. | Web Design by <a href="#">Crestline Web Studio</a></p>
+            <!-- Post 2 -->
+            <div class="post-item" data-category="bathroom">
+                <img src="https://images.unsplash.com/photo-1588854337236-6889d631faa8?w=600" alt="Bathroom trends">
+                <div class="post-item-content">
+                    <h3>Top Bathroom Design Trends in Houston for 2026</h3>
+                    <div class="post-meta"><i class="far fa-calendar-alt"></i> February 22, 2026 • <i class="fas fa-tag"></i> Bathroom</div>
+                    <p class="post-excerpt">From organic textures to smart technology — what Houston homeowners are requesting now.</p>
+                    <a href="#" class="read-more">Read More →</a>
+                </div>
             </div>
+            <!-- Post 3 -->
+            <div class="post-item" data-category="wholehome">
+                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600" alt="Whole home">
+                <div class="post-item-content">
+                    <h3>Whole Home Renovation: A Room‑by‑Room Plan</h3>
+                    <div class="post-meta"><i class="far fa-calendar-alt"></i> January 15, 2026 • <i class="fas fa-tag"></i> Whole Home</div>
+                    <p class="post-excerpt">How to tackle a full‑house remodel without disrupting your life — timeline and tips from our project managers.</p>
+                    <a href="#" class="read-more">Read More →</a>
+                </div>
+            </div>
+            <!-- Post 4 -->
+            <div class="post-item" data-category="additions">
+                <img src="https://images.unsplash.com/photo-1600607686527-6fb886090705?w=600" alt="Home addition">
+                <div class="post-item-content">
+                    <h3>Home Additions: What You Need to Know Before Building</h3>
+                    <div class="post-meta"><i class="far fa-calendar-alt"></i> December 5, 2025 • <i class="fas fa-tag"></i> Additions</div>
+                    <p class="post-excerpt">Permits, design, and seamless integration — advice for adding space to your Houston home.</p>
+                    <a href="#" class="read-more">Read More →</a>
+                </div>
+            </div>
+            <!-- Post 5 -->
+            <div class="post-item" data-category="design">
+                <img src="https://images.unsplash.com/photo-1600210492493-0946911123ea?w=600" alt="Design trends">
+                <div class="post-item-content">
+                    <h3>Houston Design Trends: Blending Modern & Traditional</h3>
+                    <div class="post-meta"><i class="far fa-calendar-alt"></i> November 18, 2025 • <i class="fas fa-tag"></i> Design</div>
+                    <p class="post-excerpt">How to combine contemporary elements with classic Houston architectural styles.</p>
+                    <a href="#" class="read-more">Read More →</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="sidebar-widget">
+                <h4>Search</h4>
+                <form class="search-form">
+                    <input type="text" class="search-input" placeholder="Search articles...">
+                    <button type="submit" class="search-btn"><i class="fas fa-search"></i></button>
+                </form>
+            </div>
+
+            <div class="sidebar-widget">
+                <h4>Categories</h4>
+                <ul>
+                    <li><a href="#">Kitchen Remodeling</a> (12)</li>
+                    <li><a href="#">Bathroom Remodeling</a> (9)</li>
+                    <li><a href="#">Whole Home Renovations</a> (7)</li>
+                    <li><a href="#">Home Additions</a> (5)</li>
+                    <li><a href="#">Design & Trends</a> (8)</li>
+                    <li><a href="#">Tips & Advice</a> (14)</li>
+                </ul>
+            </div>
+
+            <div class="sidebar-widget">
+                <h4>Recent Posts</h4>
+                <ul>
+                    <li><a href="#">Kitchen Remodeling Cost in Houston: 2026 Guide</a></li>
+                    <li><a href="#">Top Bathroom Design Trends in Houston for 2026</a></li>
+                    <li><a href="#">Whole Home Renovation: A Room‑by‑Room Plan</a></li>
+                    <li><a href="#">Home Additions: What You Need to Know</a></li>
+                    <li><a href="#">Houston Design Trends: Blending Styles</a></li>
+                </ul>
+            </div>
+
+            <div class="sidebar-widget cta-sidebar">
+                <h4 style="color: white; border-bottom: 2px solid var(--gold);">Ready to start?</h4>
+                <p>Get a free estimate for your remodeling project in Houston.</p>
+                <a href="#" class="btn-primary">Request Quote</a>
+            </div>
+        </aside>
+    </section>
+
+    <!-- 6. CALL-TO-ACTION SECTION -->
+    <section class="final-cta">
+        <div class="cta-content">
+            <h2 style="font-size: 3rem; margin-bottom: 20px;">Inspired by Our Insights? Let’s Transform Your Home!</h2>
+            <div class="cta-buttons">
+                <a href="#" class="btn-primary">Get Free Estimate</a>
+                <a href="#" class="btn-secondary">Call Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. FOOTER -->
+    <footer class="footer">
+        <div class="footer-grid container">
+            <div class="footer-col">
+                <div class="footer-logo">Aether<span class="gold-dot">.</span></div>
+                <p>Luxury home remodeling in Houston, TX.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-pinterest"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <p><i class="fas fa-phone-alt"></i> (713) 555-0123</p>
+                <p><i class="fas fa-envelope"></i> info@aetherhtx.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> 2424 Westheimer Rd, Houston, TX 77098</p>
+            </div>
+            <div class="footer-col">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="#">Kitchen Remodeling</a></li>
+                    <li><a href="#">Bathroom Remodeling</a></li>
+                    <li><a href="#">Whole Home Remodeling</a></li>
+                    <li><a href="#">Home Additions</a></li>
+                    <li><a href="#">Custom Cabinetry</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Service Areas</h4>
+                <ul>
+                    <li><a href="#">Houston</a></li>
+                    <li><a href="#">Sugar Land</a></li>
+                    <li><a href="#">Katy</a></li>
+                    <li><a href="#">The Woodlands</a></li>
+                    <li><a href="#">Pearland</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom container">
+            <p>&copy; 2025 Aether Construction. All rights reserved. | <a href="#">Privacy Policy</a></p>
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <!-- JavaScript for navbar scroll and basic category filter (simulated) -->
+    <script>
+        // Navbar scroll
+        window.addEventListener('scroll', function() {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) nav.classList.add('scrolled');
+            else nav.classList.remove('scrolled');
+        });
+
+        // Simple category filter (demo functionality)
+        const catButtons = document.querySelectorAll('.cat-btn');
+        const posts = document.querySelectorAll('.post-item');
+        catButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                catButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const cat = btn.dataset.cat;
+                posts.forEach(post => {
+                    if (cat === 'all' || post.dataset.category === cat) {
+                        post.style.display = 'grid';
+                    } else {
+                        post.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
