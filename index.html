@@ -3,167 +3,359 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calem Custom Homes | Building Perfection</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;800&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Aether | Luxury Home Remodeling Houston</title>
+    <!-- Google Fonts & Font Awesome (will be kept even with external CSS) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- External CSS (to be created) -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Header & Navigation -->
-    <header id="header">
-        <div class="container nav-container">
-            <a href="index.html" class="logo">Calem <span>Homes</span></a>
-            <button class="hamburger" id="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <ul class="nav-links" id="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="gallery.html">Portfolio</a></li>
-                <li><a href="blog.html">Blog</a></li>
-                <li><a href="testimonials.html">Testimonials</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
+    <!-- NAVIGATION (transparent, becomes solid on scroll) -->
+    <nav class="navbar" id="navbar">
+        <div class="logo">Aether<span class="gold-dot">.</span></div>
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Services ▼</a></li>
+            <li><a href="#">Gallery</a></li>
+            <li><a href="#">Service Areas ▼</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+        <div class="nav-right">
+            <span class="phone"><i class="fas fa-phone-alt"></i> (713) 555-7234</span>
+            <a href="#" class="estimate-cta">Free Estimate</a>
         </div>
-    </header>
+        <div class="hamburger"><i class="fas fa-bars"></i></div>
+    </nav>
 
-    <!-- Hero Section -->
+    <!-- HERO SECTION (full-screen video + floating form) -->
     <section class="hero">
-        <div class="hero-content">
-            <h1>Building Perfection</h1>
-            <p>Calem Custom Homes creates exceptional living spaces with unparalleled craftsmanship and attention to detail for over 20 years.</p>
-            <a href="contact.html" class="btn">Start Your Project</a>
-        </div>
-    </section>
-
-    <!-- Introduction Section -->
-    <section id="introduction">
-        <div class="container">
-            <div class="section-header">
-                <h2>WHAT WE DO</h2>
-                <p>Your one-stop-shop for any home improvement project with exceptional quality and service.</p>
-            </div>
-            <div class="about-container">
-                <div class="about-content">
-                    <p>Calem Custom Homes is one of many companies owned by Robert Traylor. In business for 20 years, Robert Traylor founded Executive Basements, Executive Kitchen and Bath, Executive Exteriors, Executive Radon and Granite Specialties.</p>
-                    <p>Our company is your one-stop-shop for any home improvement. We pride ourselves on building relationships with our homeowners, and by providing all home improvement services, we can handle any project.</p>
-                    <a href="about.html" class="btn">Learn More About Us</a>
+        <video class="hero-video" autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1556911220-bff6a9057e6f?w=1200">
+            <source src="https://videos.pexels.com/video-files/5767409/5767409-sd_640_360_25fps.mp4" type="video/mp4">
+            <!-- fallback: kitchen remodel video from Pexels -->
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="container hero-grid">
+            <!-- left content -->
+            <div class="hero-left">
+                <h1>Luxury Home Remodeling <br>in Houston</h1>
+                <p class="hero-subhead">Transforming homes with exceptional craftsmanship and timeless design.</p>
+                <div class="trust-badges">
+                    <span><i class="fas fa-star"></i> 5-Star Reviews</span>
+                    <span><i class="fas fa-check-circle"></i> Licensed & Insured</span>
+                    <span><i class="fas fa-clock"></i> 20+ Years Experience</span>
                 </div>
-                <div class="about-image">
-                    <img src="assets/amodern.jpg" alt="Custom home exterior">
+                <div class="hero-buttons">
+                    <a href="#" class="btn-primary">Get Free Estimate</a>
+                    <a href="#" class="btn-secondary">View Our Projects</a>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Services Preview -->
-    <section id="services-preview" style="background-color: var(--light-gray);">
-        <div class="container">
-            <div class="section-header">
-                <h2>OUR PRODUCTS</h2>
-                <p>Comprehensive home improvement services from foundation to finish.</p>
-            </div>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-home"></i>
-                    </div>
-                    <h3>Custom Homes</h3>
-                    <p>Complete custom home construction from design to completion.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-layer-group"></i>
-                    </div>
-                    <h3>Basement Finishing</h3>
-                    <p>Transform your basement into valuable living space with Executive Basements.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-utensils"></i>
-                    </div>
-                    <h3>Kitchen & Bathroom</h3>
-                    <p>Luxury kitchen and bathroom remodeling with Executive Kitchen & Bath.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-gem"></i>
-                    </div>
-                    <h3>Granite Countertops</h3>
-                    <p>Premium granite countertops and stone surfaces from Granite Specialties.</p>
-                </div>
+            <!-- right floating quote form -->
+            <div class="quote-form">
+                <h3>Request a consultation</h3>
+                <p>We’ll get back to you within 24 hours.</p>
+                <form>
+                    <input type="text" placeholder="Full name" required>
+                    <input type="tel" placeholder="Phone number" required>
+                    <input type="email" placeholder="Email address" required>
+                    <select required>
+                        <option value="" disabled selected>Service needed</option>
+                        <option>Kitchen Remodeling</option>
+                        <option>Bathroom Remodeling</option>
+                        <option>Whole Home Remodeling</option>
+                        <option>Home Addition</option>
+                        <option>Interior Renovation</option>
+                        <option>Exterior Renovation</option>
+                        <option>Custom Cabinetry</option>
+                    </select>
+                    <textarea rows="3" placeholder="Project description..."></textarea>
+                    <button type="submit" class="btn-primary">Request Free Estimate</button>
+                </form>
             </div>
         </div>
     </section>
 
-    <!-- Why Choose Us -->
-    <section id="why-choose">
-        <div class="container">
-            <div class="section-header">
-                <h2>WHY IS CALEM DIFFERENT?</h2>
+    <!-- QUICK SERVICES OVERVIEW -->
+    <section class="services-section container">
+        <h2 class="section-title">Our Services</h2>
+        <p class="section-subtitle">Premium remodeling tailored to Houston homeowners</p>
+        <div class="services-grid">
+            <div class="service-card">
+                <i class="fas fa-utensils"></i>
+                <h3>Kitchen Remodeling</h3>
+                <p>Custom cabinetry, marble islands, and luxury appliances.</p>
+                <a href="#" class="card-link">Learn more →</a>
             </div>
-            <div class="about-content">
-                <p>Unlike most home builders whose goals are to produce as many homes as they can and focus merely on the numbers, we build each home as if it's our own. Our primary goal is perfection and quality.</p>
-                <p>Any home builder is only as good as it's sub contractors but here at Calem our team of seasoned professionals share the same drive and passion for high quality finishes that is reflected in the finished product.</p>
-                <p>During our 20 years as a general contractor/home builder who specializes in high end custom homes and remodeling services, Calem believes the most important aspect of the business is it's relationships with its clients. It's this belief that has 90% of all clients and potential projects are referred business.</p>
-                <p>Calem Custom Homes and its companies purchase the majority of its building materials directly from the source saving you money on the high quality items that make your home or project special. Couple that with a philosophy based on high ethics and transparency you can believe you will get the best bang for your buck with Calem Custom Homes.</p>
+            <div class="service-card">
+                <i class="fas fa-bath"></i>
+                <h3>Bathroom Remodeling</h3>
+                <p>Spa-like retreats with steam showers and designer tile.</p>
+                <a href="#" class="card-link">Learn more →</a>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-home"></i>
+                <h3>Whole Home Remodeling</h3>
+                <p>Complete interior and exterior transformations.</p>
+                <a href="#" class="card-link">Learn more →</a>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-arrows-alt"></i>
+                <h3>Home Additions</h3>
+                <p>Second stories, wings, and bump‑outs with seamless design.</p>
+                <a href="#" class="card-link">Learn more →</a>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-paint-roller"></i>
+                <h3>Interior Renovations</h3>
+                <p>Refined millwork, open floor plans, and custom built-ins.</p>
+                <a href="#" class="card-link">Learn more →</a>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-couch"></i>
+                <h3>Custom Cabinets</h3>
+                <p>Bespoke joinery and storage solutions by local artisans.</p>
+                <a href="#" class="card-link">Learn more →</a>
             </div>
         </div>
     </section>
 
-    <!-- Newsletter -->
-    <section class="newsletter">
-        <div class="container">
-            <h3>Want to Learn More About Calem Custom Homes?</h3>
-            <p>Subscribe to our newsletter for updates, tips, and inspiration for your custom home project.</p>
-            <form class="newsletter-form" id="newsletterForm">
-                <input type="email" placeholder="Enter your email address" required>
-                <button type="submit" class="btn">Subscribe</button>
-            </form>
-            <p style="font-size: 0.9rem; margin-top: 15px;">We will not share your email.</p>
+    <!-- FEATURED REMODELING PROJECTS -->
+    <section class="projects-section container">
+        <h2 class="section-title">Featured projects</h2>
+        <p class="section-subtitle">Recent work across Houston's finest neighborhoods</p>
+        <div class="projects-grid">
+            <div class="project-card">
+                <img src="https://images.unsplash.com/photo-1556911220-bff6a9057e6f?w=600" alt="Modern kitchen">
+                <div class="project-info">
+                    <h3>Modern Kitchen Remodel</h3>
+                    <p class="project-location"><i class="fas fa-map-marker-alt"></i> River Oaks, Houston</p>
+                    <a href="#" class="card-link">View Project →</a>
+                </div>
+            </div>
+            <div class="project-card">
+                <img src="https://images.unsplash.com/photo-1588854337236-6889d631faa8?w=600" alt="Luxury bathroom">
+                <div class="project-info">
+                    <h3>Marble Spa Bathroom</h3>
+                    <p class="project-location"><i class="fas fa-map-marker-alt"></i> Uptown, Houston</p>
+                    <a href="#" class="card-link">View Project →</a>
+                </div>
+            </div>
+            <div class="project-card">
+                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600" alt="Whole home exterior">
+                <div class="project-info">
+                    <h3>Memorial Manor</h3>
+                    <p class="project-location"><i class="fas fa-map-marker-alt"></i> Memorial, Houston</p>
+                    <a href="#" class="card-link">View Project →</a>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>Calem Custom Homes</h3>
-                    <p>Building exceptional custom homes with perfection and quality for over 20 years.</p>
+    <!-- BEFORE & AFTER SECTION (interactive slider placeholder) -->
+    <section class="beforeafter-section container">
+        <h2 class="section-title">Real transformations</h2>
+        <p class="section-subtitle">Slide to see the difference — kitchen in Katy, TX</p>
+        <div class="comparison-slider" id="beforeAfterSlider">
+            <!-- simple structure for JS to enhance -->
+            <div class="slider-container">
+                <img src="https://images.unsplash.com/photo-1588854337236-6889d631faa8?w=1000" alt="Before" class="before-img">
+                <img src="https://images.unsplash.com/photo-1556911220-bff6a9057e6f?w=1000" alt="After" class="after-img">
+                <input type="range" min="0" max="100" value="50" class="slider-input" id="slider">
+            </div>
+        </div>
+    </section>
+
+    <!-- WHY CHOOSE US (icon-based) -->
+    <section class="whychoose-section container">
+        <h2 class="section-title">Why choose Aether</h2>
+        <div class="benefits-grid">
+            <div class="benefit">
+                <i class="fas fa-calendar-check"></i>
+                <h4>20+ Years Experience</h4>
+                <p>Decades of luxury renovations in Houston.</p>
+            </div>
+            <div class="benefit">
+                <i class="fas fa-shield-alt"></i>
+                <h4>Licensed & Insured</h4>
+                <p>Full liability and workers’ comp for your peace of mind.</p>
+            </div>
+            <div class="benefit">
+                <i class="fas fa-gem"></i>
+                <h4>High Quality Materials</h4>
+                <p>Marble, European oak, custom steel — only the best.</p>
+            </div>
+            <div class="benefit">
+                <i class="fas fa-user-tie"></i>
+                <h4>Dedicated Project Manager</h4>
+                <p>One point of contact from design to completion.</p>
+            </div>
+            <div class="benefit">
+                <i class="fas fa-file-invoice-dollar"></i>
+                <h4>Transparent Pricing</h4>
+                <p>Fixed‑cost contracts with no surprises.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- REMODELING PROCESS -->
+    <section class="process-section container">
+        <h2 class="section-title">Our remodeling process</h2>
+        <div class="process-steps">
+            <div class="step">
+                <span class="step-number">1</span>
+                <h3>Free Consultation</h3>
+                <p>We visit your home, discuss ideas, and provide a preliminary budget.</p>
+            </div>
+            <div class="step">
+                <span class="step-number">2</span>
+                <h3>Design & Planning</h3>
+                <p>3D renderings, material selections, and finalizing the scope.</p>
+            </div>
+            <div class="step">
+                <span class="step-number">3</span>
+                <h3>Construction</h3>
+                <p>Skilled trades, daily updates, and meticulous project management.</p>
+            </div>
+            <div class="step">
+                <span class="step-number">4</span>
+                <h3>Final Walkthrough</h3>
+                <p>We review every detail together and hand over your dream space.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CLIENT TESTIMONIALS -->
+    <section class="testimonials-section container">
+        <h2 class="section-title">What our clients say</h2>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p>“Fantastic remodeling experience. Our kitchen looks incredible — the team was professional and the craftsmanship is flawless.”</p>
+                <div class="client">— Sarah M., Houston</div>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p>“They transformed our 1980s house into a modern masterpiece. We couldn’t be happier with the whole home renovation.”</p>
+                <div class="client">— David & Lisa, Sugar Land</div>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p>“Aether exceeded our expectations. Their attention to detail and communication made the process stress‑free.”</p>
+                <div class="client">— The Harrisons, Katy</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICE AREAS -->
+    <section class="areas-section container">
+        <h2 class="section-title">Service areas</h2>
+        <p class="section-subtitle">Serving homeowners across the Houston metro</p>
+        <div class="areas-list">
+            <a href="#">Houston</a>
+            <a href="#">Sugar Land</a>
+            <a href="#">Katy</a>
+            <a href="#">The Woodlands</a>
+            <a href="#">Pearland</a>
+            <a href="#">Cypress</a>
+            <a href="#">Missouri City</a>
+            <a href="#">Pasadena</a>
+            <a href="#">League City</a>
+            <a href="#">Spring</a>
+        </div>
+    </section>
+
+    <!-- BLOG / REMODELING TIPS -->
+    <section class="blog-section container">
+        <h2 class="section-title">Remodeling insights</h2>
+        <div class="blog-grid">
+            <article class="blog-card">
+                <img src="https://images.unsplash.com/photo-1556911220-bff6a9057e6f?w=600" alt="Kitchen">
+                <div class="blog-content">
+                    <h4>Kitchen Remodeling Cost in Houston (2025)</h4>
+                    <p>Average pricing, ROI, and how to budget for your luxury kitchen ...</p>
+                    <a href="#" class="card-link">Read more →</a>
                 </div>
-                <div class="footer-column">
-                    <h3>Contact Info</h3>
-                    <p>Fort Collins, Colorado</p>
-                    <p>970-219-7474</p>
-                    <p>calemcustomhomes@hotmail.com</p>
+            </article>
+            <article class="blog-card">
+                <img src="https://images.unsplash.com/photo-1588854337236-6889d631faa8?w=600" alt="Bathroom">
+                <div class="blog-content">
+                    <h4>Bathroom Design Trends Houston Homeowners Love</h4>
+                    <p>Spa showers, heated floors, and timeless materials ...</p>
+                    <a href="#" class="card-link">Read more →</a>
                 </div>
-                <div class="footer-column">
-                    <h3>Quick Links</h3>
-                    <a href="index.html">Home</a>
-                    <a href="about.html">About</a>
-                    <a href="services.html">Services</a>
-                    <a href="gallery.html">Portfolio</a>
-                    <a href="blog.html">Blog</a>
-                    <a href="contact.html">Contact</a>
+            </article>
+            <article class="blog-card">
+                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600" alt="Construction">
+                <div class="blog-content">
+                    <h4>How Long Does a Home Remodel Take?</h4>
+                    <p>A realistic timeline for kitchens, baths, and whole‑home renovations ...</p>
+                    <a href="#" class="card-link">Read more →</a>
                 </div>
-                <div class="footer-column">
-                    <h3>Our Companies</h3>
-                    <a href="#">Executive Basements</a>
-                    <a href="#">Executive Kitchen & Bath</a>
-                    <a href="#">Executive Exteriors</a>
-                    <a href="#">Granite Specialties</a>
+            </article>
+        </div>
+    </section>
+
+    <!-- FINAL CALL TO ACTION -->
+    <section class="final-cta">
+        <div class="cta-content">
+            <h2>Ready to Remodel Your Home?</h2>
+            <p>Get a free consultation with our design team today.</p>
+            <div class="cta-buttons">
+                <a href="#" class="btn-primary">Get Free Estimate</a>
+                <a href="#" class="btn-secondary">Call Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-grid container">
+            <div class="footer-col">
+                <div class="footer-logo">Aether<span class="gold-dot">.</span></div>
+                <p>Luxury home remodeling in Houston, TX.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-pinterest"></i></a>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>Copyright © 2025 Calem Custom Homes. All Rights Reserved. | Web Design by <a href="#">Crestline Web Studio</a></p>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <p><i class="fas fa-phone-alt"></i> (713) 555-0123</p>
+                <p><i class="fas fa-envelope"></i> info@aetherhtx.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> 2424 Westheimer Rd, Houston, TX 77098</p>
             </div>
+            <div class="footer-col">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="#">Kitchen Remodeling</a></li>
+                    <li><a href="#">Bathroom Remodeling</a></li>
+                    <li><a href="#">Whole Home Remodeling</a></li>
+                    <li><a href="#">Home Additions</a></li>
+                    <li><a href="#">Custom Cabinetry</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Service Areas</h4>
+                <ul>
+                    <li><a href="#">Houston</a></li>
+                    <li><a href="#">Sugar Land</a></li>
+                    <li><a href="#">Katy</a></li>
+                    <li><a href="#">The Woodlands</a></li>
+                    <li><a href="#">Pearland</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom container">
+            <p>&copy; 2025 Aether Construction. All rights reserved. | <a href="#">Privacy Policy</a></p>
         </div>
     </footer>
 
+    <!-- External JavaScript (to be created) -->
     <script src="script.js"></script>
 </body>
 </html>
