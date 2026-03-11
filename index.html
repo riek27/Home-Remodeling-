@@ -1,361 +1,396 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aether | Luxury Home Remodeling Houston</title>
-    <!-- Google Fonts & Font Awesome (will be kept even with external CSS) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- External CSS (to be created) -->
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Luxury Home Remodeling Houston | bespoke craftsmanship</title>
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* RESET & BASE */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background-color: #fff; color: #1a1a1a; line-height: 1.5; overflow-x: hidden; }
+    h1, h2, h3, h4 { font-family: 'Playfair Display', serif; font-weight: 500; line-height: 1.2; }
+    a { text-decoration: none; color: inherit; }
+    .container { max-width: 1440px; margin: 0 auto; padding: 0 40px; }
+    @media (max-width: 768px) { .container { padding: 0 24px; } }
+
+    /* COLORS */
+    :root {
+      --charcoal: #1a1a1a;
+      --gold: #b79a5f;
+      --copper: #b87333;
+      --light-bg: #f9f9f9;
+      --white: #ffffff;
+      --glass-bg: rgba(255, 255, 255, 0.15);
+      --glass-border: rgba(255, 255, 255, 0.2);
+    }
+
+    /* BUTTONS */
+    .btn-primary { display: inline-block; background-color: var(--gold); color: #000; font-weight: 600; padding: 14px 32px; border-radius: 40px; letter-spacing: 0.5px; transition: all 0.3s; border: 1px solid transparent; }
+    .btn-primary:hover { background-color: #a68950; transform: translateY(-2px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+    .btn-secondary { display: inline-block; background-color: transparent; color: #fff; font-weight: 600; padding: 14px 32px; border-radius: 40px; border: 1px solid rgba(255,255,255,0.3); backdrop-filter: blur(5px); transition: 0.3s; }
+    .btn-secondary:hover { background-color: rgba(255,255,255,0.1); border-color: #fff; }
+
+    /* NAVIGATION */
+    .navbar { position: fixed; top: 0; left: 0; width: 100%; padding: 20px 40px; display: flex; align-items: center; justify-content: space-between; z-index: 1000; transition: background 0.3s, padding 0.3s, box-shadow 0.3s; color: white; }
+    .navbar.scrolled { background: var(--white); color: var(--charcoal); box-shadow: 0 4px 20px rgba(0,0,0,0.05); padding: 15px 40px; }
+    .navbar.scrolled .nav-links a { color: var(--charcoal); }
+    .navbar.scrolled .phone-number { color: var(--charcoal); }
+    .navbar.scrolled .estimate-cta { background: var(--gold); color: #000; border: none; }
+    .logo { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 600; letter-spacing: -0.5px; }
+    .nav-links { display: flex; gap: 40px; font-weight: 500; }
+    .nav-links a { position: relative; }
+    .nav-links a:after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px; background: var(--gold); transition: 0.3s; }
+    .nav-links a:hover:after { width: 100%; }
+    .nav-right { display: flex; align-items: center; gap: 30px; }
+    .phone-number { font-weight: 600; letter-spacing: 0.5px; }
+    .estimate-cta { background: transparent; border: 1px solid rgba(255,255,255,0.3); padding: 10px 24px; border-radius: 40px; font-weight: 600; transition: 0.3s; }
+    .estimate-cta:hover { background: var(--gold); color: #000; border-color: var(--gold); }
+    .hamburger { display: none; font-size: 1.8rem; cursor: pointer; }
+
+    @media (max-width: 1024px) {
+      .nav-links { gap: 20px; }
+      .nav-right { gap: 15px; }
+    }
+    @media (max-width: 768px) {
+      .navbar { padding: 15px 24px; }
+      .nav-links, .nav-right .phone-number { display: none; }
+      .hamburger { display: block; }
+    }
+
+    /* HERO SECTION */
+    .hero { position: relative; height: 100vh; width: 100%; overflow: hidden; display: flex; align-items: center; color: white; }
+    .hero-video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; }
+    .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(90deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 70%); z-index: -1; }
+    .hero-grid { display: grid; grid-template-columns: 1.2fr 0.9fr; gap: 60px; align-items: center; width: 100%; padding-top: 100px; }
+    .hero-left h1 { font-size: clamp(3rem, 7vw, 5.5rem); font-weight: 600; margin-bottom: 20px; line-height: 1.1; }
+    .hero-left .subhead { font-size: 1.3rem; margin-bottom: 30px; opacity: 0.9; }
+    .trust-badges { display: flex; flex-wrap: wrap; gap: 25px; margin: 30px 0; font-weight: 500; }
+    .trust-badges i { color: var(--gold); margin-right: 8px; }
+    .contact-hero { display: flex; gap: 30px; margin-bottom: 40px; font-size: 1.1rem; }
+    .contact-hero i { color: var(--gold); width: 24px; }
+    .hero-btns { display: flex; gap: 20px; flex-wrap: wrap; }
+
+    /* FLOATING QUOTE FORM */
+    .quote-form { background: var(--glass-bg); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border: 1px solid var(--glass-border); border-radius: 24px; padding: 35px 30px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.4); width: 100%; }
+    .quote-form h3 { font-size: 1.8rem; color: white; margin-bottom: 10px; }
+    .quote-form p { color: rgba(255,255,255,0.8); margin-bottom: 25px; }
+    .form-group { margin-bottom: 18px; }
+    .quote-form input, .quote-form select, .quote-form textarea { width: 100%; padding: 14px 18px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 40px; font-family: 'Inter', sans-serif; color: white; font-size: 1rem; outline: none; transition: 0.3s; }
+    .quote-form input:focus, .quote-form select:focus, .quote-form textarea:focus { border-color: var(--gold); background: rgba(255,255,255,0.15); }
+    .quote-form input::placeholder, .quote-form textarea::placeholder { color: rgba(255,255,255,0.7); }
+    .quote-form select option { background: #333; color: white; }
+    .quote-form textarea { border-radius: 30px; resize: vertical; }
+    .quote-form .btn-primary { width: 100%; border: none; cursor: pointer; font-size: 1.1rem; background: var(--gold); color: #1a1a1a; }
+    .quote-form .btn-primary:hover { background: #c9ac6e; }
+
+    @media (max-width: 968px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+      .hero { height: auto; min-height: 100vh; padding: 120px 0 60px; }
+      .quote-form { max-width: 600px; margin: 0 auto; }
+    }
+
+    /* SECTIONS GENERAL */
+    section { padding: 100px 0; }
+    .section-title { font-size: 3rem; margin-bottom: 20px; }
+    .section-sub { color: #666; max-width: 700px; margin-bottom: 60px; font-size: 1.2rem; }
+
+    /* SERVICES CARDS */
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+    .service-card { background: white; border-radius: 24px; padding: 40px 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.03); transition: 0.3s; border: 1px solid #eee; }
+    .service-card:hover { transform: translateY(-10px); box-shadow: 0 30px 40px rgba(0,0,0,0.06); border-color: var(--gold); }
+    .service-card i { font-size: 2.5rem; color: var(--gold); margin-bottom: 20px; }
+    .service-card h3 { font-size: 1.8rem; margin-bottom: 15px; }
+    .service-card p { color: #555; }
+
+    /* PROJECT CARDS */
+    .project-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+    .project-card { border-radius: 24px; overflow: hidden; background: #fff; box-shadow: 0 5px 20px rgba(0,0,0,0.02); transition: 0.3s; }
+    .project-card img { width: 100%; height: 280px; object-fit: cover; transition: 0.5s; }
+    .project-card:hover img { transform: scale(1.03); }
+    .project-info { padding: 25px; }
+    .project-info h3 { font-size: 1.6rem; margin-bottom: 10px; }
+    .project-info p { color: #777; }
+
+    /* BEFORE/AFTER SLIDER */
+    .comparison { background: var(--light-bg); border-radius: 40px; padding: 50px; }
+    .slider-container { position: relative; width: 100%; max-width: 900px; margin: 40px auto 0; border-radius: 30px; overflow: hidden; box-shadow: 0 30px 40px -20px rgba(0,0,0,0.3); }
+    .comparison-img { width: 100%; display: block; }
+    .img-comp { position: relative; }
+    .img-comp-img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; }
+    .img-comp-img img { display: block; width: 100%; height: 100%; object-fit: cover; }
+    .img-comp-slider { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 50px; height: 50px; background: var(--gold); border-radius: 50%; cursor: ew-resize; z-index: 10; border: 3px solid white; box-shadow: 0 0 10px black; }
+
+    /* WHY US ICONS */
+    .benefits-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 40px; text-align: center; }
+    .benefit-item i { font-size: 2.8rem; color: var(--gold); margin-bottom: 15px; }
+    .benefit-item h4 { font-size: 1.4rem; margin-bottom: 8px; }
+
+    /* TESTIMONIALS */
+    .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+    .testimonial-card { background: var(--light-bg); padding: 30px; border-radius: 30px; }
+    .stars { color: var(--gold); margin: 15px 0; }
+    .client-name { font-weight: 600; margin-top: 15px; }
+
+    /* PROCESS TIMELINE */
+    .process-steps { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
+    .step { flex: 1; min-width: 200px; text-align: center; position: relative; }
+    .step-number { width: 60px; height: 60px; background: var(--gold); color: #000; border-radius: 60px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; font-weight: 700; margin: 0 auto 25px; }
+
+    /* SERVICE AREAS */
+    .area-links { display: flex; flex-wrap: wrap; gap: 15px; margin-top: 30px; }
+    .area-links a { background: #f1f1f1; padding: 12px 30px; border-radius: 50px; transition: 0.2s; }
+    .area-links a:hover { background: var(--gold); color: #000; }
+
+    /* BLOG PREVIEW */
+    .blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+    .blog-card { border-radius: 24px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.02); }
+    .blog-card img { width: 100%; height: 220px; object-fit: cover; }
+    .blog-content { padding: 25px; }
+    .blog-content h4 { font-size: 1.5rem; margin-bottom: 10px; }
+
+    /* FINAL CTA */
+    .cta-section { background: var(--charcoal); color: white; text-align: center; border-radius: 60px; margin: 0 40px; padding: 80px 40px; }
+    .cta-section h2 { font-size: 3.5rem; margin-bottom: 30px; }
+    .cta-buttons { display: flex; gap: 20px; justify-content: center; }
+
+    /* FOOTER */
+    footer { background: var(--charcoal); color: #aaa; padding: 60px 40px 30px; margin-top: 80px; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 2fr; gap: 40px; }
+    .footer-logo { font-family: 'Playfair Display', serif; font-size: 2rem; color: white; margin-bottom: 15px; }
+    .footer-contact p { margin: 10px 0; }
+    .footer-contact i { color: var(--gold); width: 30px; }
+    .footer-links a { display: block; margin: 8px 0; color: #ccc; }
+    .footer-links a:hover { color: var(--gold); }
+    .social i { font-size: 1.8rem; margin-right: 15px; color: #aaa; transition: 0.2s; }
+    .social i:hover { color: var(--gold); }
+    .copyright { text-align: center; margin-top: 60px; border-top: 1px solid #333; padding-top: 30px; }
+
+    @media (max-width: 1024px) {
+      .project-grid, .testimonials-grid, .blog-grid { grid-template-columns: repeat(2,1fr); }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      .project-grid, .testimonials-grid, .blog-grid { grid-template-columns: 1fr; }
+      .process-steps { flex-direction: column; }
+      .cta-section { margin: 0 20px; padding: 50px 20px; }
+    }
+  </style>
 </head>
 <body>
-    <!-- NAVIGATION (transparent, becomes solid on scroll) -->
-    <nav class="navbar" id="navbar">
-        <div class="logo">Aether<span class="gold-dot">.</span></div>
-        <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="services.html">Services ▼</a></li>
-            <li><a href="gallery.html">Gallery</a></li>
-            <li><a href="servicesarea.html">Service Areas ▼</a></li>
-            <li><a href="blog.html">Blog</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-        <div class="nav-right">
-            <span class="phone"><i class="fas fa-phone-alt"></i> (713) 555-7234</span>
-            <a href="#" class="estimate-cta">Free Estimate</a>
-        </div>
-        <div class="hamburger"><i class="fas fa-bars"></i></div>
-    </nav>
+  <!-- FIXED NAVIGATION -->
+  <nav class="navbar" id="navbar">
+    <div class="logo">Aether<span style="color: #b79a5f;">.</span></div>
+    <div class="nav-links">
+      <a href="#">Home</a>
+      <a href="#">About</a>
+      <a href="#">Services ▼</a>
+      <a href="#">Gallery</a>
+      <a href="#">Service Areas ▼</a>
+      <a href="#">Blog</a>
+      <a href="#">Contact</a>
+    </div>
+    <div class="nav-right">
+      <span class="phone-number"><i class="fas fa-phone-alt" style="color: #b79a5f;"></i> (713) 555-7234</span>
+      <a href="#" class="estimate-cta">Free Estimate</a>
+    </div>
+    <div class="hamburger"><i class="fas fa-bars"></i></div>
+  </nav>
 
-    <!-- HERO SECTION (full-screen video + floating form) -->
-    <section class="hero">
-        <video class="hero-video" autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1556911220-bff6a9057e6f?w=1200">
-            <source src="assets/acinema.mp4" type="video/mp4">
-            <!-- fallback: kitchen remodel video from Pexels -->
-        </video>
-        <div class="hero-overlay"></div>
-        <div class="container hero-grid">
-            <!-- left content -->
-            <div class="hero-left">
-                <h1>Luxury Home Remodeling <br>in Houston</h1>
-                <p class="hero-subhead">Transforming homes with exceptional craftsmanship and timeless design.</p>
-                <div class="trust-badges">
-                    <span><i class="fas fa-star"></i> 5-Star Reviews</span>
-                    <span><i class="fas fa-check-circle"></i> Licensed & Insured</span>
-                    <span><i class="fas fa-clock"></i> 20+ Years Experience</span>
-                </div>
-                <div class="hero-buttons">
-                    <a href="#" class="btn-primary">Get Free Estimate</a>
-                    <a href="#" class="btn-secondary">View Our Projects</a>
-                </div>
-            </div>
-            <!-- right floating quote form -->
-            <div class="quote-form">
-                <h3>Request a consultation</h3>
-                <p>We’ll get back to you within 24 hours.</p>
-                <form>
-                    <input type="text" placeholder="Full name" required>
-                    <input type="tel" placeholder="Phone number" required>
-                    <input type="email" placeholder="Email address" required>
-                    <select required>
-                        <option value="" disabled selected>Service needed</option>
-                        <option>Kitchen Remodeling</option>
-                        <option>Bathroom Remodeling</option>
-                        <option>Whole Home Remodeling</option>
-                        <option>Home Addition</option>
-                        <option>Interior Renovation</option>
-                        <option>Exterior Renovation</option>
-                        <option>Custom Cabinetry</option>
-                    </select>
-                    <textarea rows="3" placeholder="Project description..."></textarea>
-                    <button type="submit" class="btn-primary">Request Free Estimate</button>
-                </form>
-            </div>
+  <!-- HERO SECTION WITH VIDEO BACKGROUND -->
+  <section class="hero">
+    <video class="hero-video" autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1556911220-bff6a9057e6f?w=1200">
+      <source src="assets/acinema.mp4" type="video/mp4">
+      <!-- fallback: kitchen remodel video from Pexels -->
+    </video>
+    <div class="hero-overlay"></div>
+    <div class="container hero-grid">
+      <!-- LEFT CONTENT -->
+      <div class="hero-left">
+        <h1>Luxury Home Remodeling in Houston</h1>
+        <div class="subhead">Transforming homes with exceptional craftsmanship and timeless design.</div>
+        <div class="trust-badges">
+          <span><i class="fas fa-star"></i> 5-Star Rated by Houston Homeowners</span>
+          <span><i class="fas fa-check-circle"></i> Licensed & Insured</span>
+          <span><i class="fas fa-clock"></i> 20+ Years Experience</span>
         </div>
-    </section>
+        <div class="contact-hero">
+          <span><i class="fas fa-phone-alt"></i> (713) 555-0123</span>
+          <span><i class="fas fa-envelope"></i> info@aetherhtx.com</span>
+        </div>
+        <div class="hero-btns">
+          <a href="#" class="btn-primary">Get Free Estimate</a>
+          <a href="#" class="btn-secondary">View Our Work</a>
+        </div>
+      </div>
 
-    <!-- QUICK SERVICES OVERVIEW -->
-    <section class="services-section container">
-        <h2 class="section-title">Our Services</h2>
-        <p class="section-subtitle">Premium remodeling tailored to Houston homeowners</p>
-        <div class="services-grid">
-            <div class="service-card">
-                <i class="fas fa-utensils"></i>
-                <h3>Kitchen Remodeling</h3>
-                <p>Custom cabinetry, marble islands, and luxury appliances.</p>
-                <a href="#" class="card-link">Learn more →</a>
-            </div>
-            <div class="service-card">
-                <i class="fas fa-bath"></i>
-                <h3>Bathroom Remodeling</h3>
-                <p>Spa-like retreats with steam showers and designer tile.</p>
-                <a href="#" class="card-link">Learn more →</a>
-            </div>
-            <div class="service-card">
-                <i class="fas fa-home"></i>
-                <h3>Whole Home Remodeling</h3>
-                <p>Complete interior and exterior transformations.</p>
-                <a href="#" class="card-link">Learn more →</a>
-            </div>
-            <div class="service-card">
-                <i class="fas fa-arrows-alt"></i>
-                <h3>Home Additions</h3>
-                <p>Second stories, wings, and bump‑outs with seamless design.</p>
-                <a href="#" class="card-link">Learn more →</a>
-            </div>
-            <div class="service-card">
-                <i class="fas fa-paint-roller"></i>
-                <h3>Interior Renovations</h3>
-                <p>Refined millwork, open floor plans, and custom built-ins.</p>
-                <a href="#" class="card-link">Learn more →</a>
-            </div>
-            <div class="service-card">
-                <i class="fas fa-couch"></i>
-                <h3>Custom Cabinets</h3>
-                <p>Bespoke joinery and storage solutions by local artisans.</p>
-                <a href="#" class="card-link">Learn more →</a>
-            </div>
-        </div>
-    </section>
+      <!-- RIGHT FLOATING QUOTE FORM -->
+      <div class="quote-form">
+        <h3>Request a consultation</h3>
+        <p>We’ll get back to you within 24 hours.</p>
+        <form>
+          <div class="form-group"><input type="text" placeholder="Full name" required></div>
+          <div class="form-group"><input type="tel" placeholder="Phone number" required></div>
+          <div class="form-group"><input type="email" placeholder="Email address" required></div>
+          <div class="form-group">
+            <select required>
+              <option value="" disabled selected>Service needed</option>
+              <option>Kitchen Remodeling</option>
+              <option>Bathroom Remodeling</option>
+              <option>Whole Home</option>
+              <option>Home Addition</option>
+              <option>Interior Renovation</option>
+              <option>Exterior Renovation</option>
+              <option>Custom Cabinetry</option>
+            </select>
+          </div>
+          <div class="form-group"><textarea rows="3" placeholder="Project description..."></textarea></div>
+          <button type="submit" class="btn-primary">Request Free Estimate</button>
+        </form>
+      </div>
+    </div>
+  </section>
 
-    <!-- FEATURED REMODELING PROJECTS -->
-    <section class="projects-section container">
-        <h2 class="section-title">Featured projects</h2>
-        <p class="section-subtitle">Recent work across Houston's finest neighborhoods</p>
-        <div class="projects-grid">
-            <div class="project-card">
-                <img src="https://images.unsplash.com/photo-1556911220-bff6a9057e6f?w=600" alt="Modern kitchen">
-                <div class="project-info">
-                    <h3>Modern Kitchen Remodel</h3>
-                    <p class="project-location"><i class="fas fa-map-marker-alt"></i> River Oaks, Houston</p>
-                    <a href="#" class="card-link">View Project →</a>
-                </div>
-            </div>
-            <div class="project-card">
-                <img src="https://images.unsplash.com/photo-1588854337236-6889d631faa8?w=600" alt="Luxury bathroom">
-                <div class="project-info">
-                    <h3>Marble Spa Bathroom</h3>
-                    <p class="project-location"><i class="fas fa-map-marker-alt"></i> Uptown, Houston</p>
-                    <a href="#" class="card-link">View Project →</a>
-                </div>
-            </div>
-            <div class="project-card">
-                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600" alt="Whole home exterior">
-                <div class="project-info">
-                    <h3>Memorial Manor</h3>
-                    <p class="project-location"><i class="fas fa-map-marker-alt"></i> Memorial, Houston</p>
-                    <a href="#" class="card-link">View Project →</a>
-                </div>
-            </div>
-        </div>
-    </section>
+  <!-- SERVICES SECTION -->
+  <section class="container">
+    <h2 class="section-title">Premium services</h2>
+    <div class="section-sub">Tailored renovations that redefine luxury living in Houston.</div>
+    <div class="services-grid">
+      <div class="service-card"><i class="fas fa-utensils"></i><h3>Kitchen Remodeling</h3><p>Custom cabinetry, stone surfaces, and luxury appliances.</p></div>
+      <div class="service-card"><i class="fas fa-bath"></i><h3>Bathroom Remodeling</h3><p>Spa-like retreats with marble, steam showers, and smart fixtures.</p></div>
+      <div class="service-card"><i class="fas fa-home"></i><h3>Whole Home Remodeling</h3><p>Complete transformations that elevate every room.</p></div>
+      <div class="service-card"><i class="fas fa-arrows-alt"></i><h3>Home Additions</h3><p>Seamless expansions — second stories, wings, and bump-outs.</p></div>
+      <div class="service-card"><i class="fas fa-paint-roller"></i><h3>Interior Renovation</h3><p>Refined finishes, custom millwork, and open floor plans.</p></div>
+      <div class="service-card"><i class="fas fa-tree"></i><h3>Exterior Renovation</h3><p>Stone facades, outdoor kitchens, and architectural detail.</p></div>
+      <div class="service-card"><i class="fas fa-couch"></i><h3>Custom Cabinetry</h3><p>Bespoke built-ins and joinery by local artisans.</p></div>
+    </div>
+  </section>
 
-    <!-- BEFORE & AFTER SECTION (interactive slider placeholder) -->
-    <section class="beforeafter-section container">
-        <h2 class="section-title">Real transformations</h2>
-        <p class="section-subtitle">Slide to see the difference — kitchen in Katy, TX</p>
-        <div class="comparison-slider" id="beforeAfterSlider">
-            <!-- simple structure for JS to enhance -->
-            <div class="slider-container">
-                <img src="https://images.unsplash.com/photo-1588854337236-6889d631faa8?w=1000" alt="Before" class="before-img">
-                <img src="https://images.unsplash.com/photo-1556911220-bff6a9057e6f?w=1000" alt="After" class="after-img">
-                <input type="range" min="0" max="100" value="50" class="slider-input" id="slider">
-            </div>
-        </div>
-    </section>
+  <!-- FEATURED PROJECTS -->
+  <section class="container">
+    <h2 class="section-title">Featured remodels</h2>
+    <div class="section-sub">Recent Houston projects — from River Oaks to The Woodlands.</div>
+    <div class="project-grid">
+      <div class="project-card"><img src="https://images.unsplash.com/photo-1556911220-bff6a9057e6f?w=600" alt="Modern kitchen"><div class="project-info"><h3>Modern Georgian</h3><p>Kitchen • River Oaks</p></div></div>
+      <div class="project-card"><img src="https://images.unsplash.com/photo-1588854337236-6889d631faa8?w=600" alt="Bathroom"><div class="project-info"><h3>Marble Spa</h3><p>Bathroom • Uptown</p></div></div>
+      <div class="project-card"><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600" alt="Whole home"><div class="project-info"><h3>Memorial Manor</h3><p>Whole home • Memorial</p></div></div>
+    </div>
+  </section>
 
-    <!-- WHY CHOOSE US (icon-based) -->
-    <section class="whychoose-section container">
-        <h2 class="section-title">Why choose Aether</h2>
-        <div class="benefits-grid">
-            <div class="benefit">
-                <i class="fas fa-calendar-check"></i>
-                <h4>20+ Years Experience</h4>
-                <p>Decades of luxury renovations in Houston.</p>
-            </div>
-            <div class="benefit">
-                <i class="fas fa-shield-alt"></i>
-                <h4>Licensed & Insured</h4>
-                <p>Full liability and workers’ comp for your peace of mind.</p>
-            </div>
-            <div class="benefit">
-                <i class="fas fa-gem"></i>
-                <h4>High Quality Materials</h4>
-                <p>Marble, European oak, custom steel — only the best.</p>
-            </div>
-            <div class="benefit">
-                <i class="fas fa-user-tie"></i>
-                <h4>Dedicated Project Manager</h4>
-                <p>One point of contact from design to completion.</p>
-            </div>
-            <div class="benefit">
-                <i class="fas fa-file-invoice-dollar"></i>
-                <h4>Transparent Pricing</h4>
-                <p>Fixed‑cost contracts with no surprises.</p>
-            </div>
+  <!-- BEFORE & AFTER SLIDER -->
+  <section class="container">
+    <h2 class="section-title">Transformations</h2>
+    <div class="comparison">
+      <p style="text-align: center; margin-bottom: 20px;">Slide to reveal the renovation — kitchen in Katy, TX</p>
+      <div class="slider-container" id="beforeAfter">
+        <div class="img-comp" style="position: relative; width: 100%; padding-bottom: 66%; background: #ccc;">
+          <div class="img-comp-img" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+            <img src="https://images.unsplash.com/photo-1588854337236-6889d631faa8?w=1000" alt="before" style="width:100%; height:100%; object-fit: cover;">
+          </div>
+          <div class="img-comp-img" style="position: absolute; top: 0; left: 0; width: 50%; height: 100%; overflow: hidden; border-right: 4px solid #b79a5f;">
+            <img src="https://images.unsplash.com/photo-1556911220-bff6a9057e6f?w=1000" alt="after" style="width:100%; height:100%; object-fit: cover; object-position: left;">
+          </div>
+          <input type="range" min="0" max="100" value="50" class="img-comp-slider" style="position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 6px; height: 100%; background: transparent; pointer-events: none;" id="sliderRange">
+          <div class="img-comp-slider" style="top: 50%; left: 50%; transform: translate(-50%, -50%); pointer-events: none;"></div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- REMODELING PROCESS -->
-    <section class="process-section container">
-        <h2 class="section-title">Our remodeling process</h2>
-        <div class="process-steps">
-            <div class="step">
-                <span class="step-number">1</span>
-                <h3>Free Consultation</h3>
-                <p>We visit your home, discuss ideas, and provide a preliminary budget.</p>
-            </div>
-            <div class="step">
-                <span class="step-number">2</span>
-                <h3>Design & Planning</h3>
-                <p>3D renderings, material selections, and finalizing the scope.</p>
-            </div>
-            <div class="step">
-                <span class="step-number">3</span>
-                <h3>Construction</h3>
-                <p>Skilled trades, daily updates, and meticulous project management.</p>
-            </div>
-            <div class="step">
-                <span class="step-number">4</span>
-                <h3>Final Walkthrough</h3>
-                <p>We review every detail together and hand over your dream space.</p>
-            </div>
-        </div>
-    </section>
+  <!-- WHY CHOOSE US -->
+  <section class="container">
+    <h2 class="section-title">Why Aether</h2>
+    <div class="benefits-grid">
+      <div class="benefit-item"><i class="fas fa-calendar-check"></i><h4>20+ Years</h4><p>Houston’s trusted contractor</p></div>
+      <div class="benefit-item"><i class="fas fa-shield-alt"></i><h4>Licensed & Insured</h4><p>Full liability & workers' comp</p></div>
+      <div class="benefit-item"><i class="fas fa-gem"></i><h4>Premium Materials</h4><p>Marble, European oak, custom steel</p></div>
+      <div class="benefit-item"><i class="fas fa-clipboard-list"></i><h4>Dedicated PM</h4><p>Single point of contact</p></div>
+      <div class="benefit-item"><i class="fas fa-lock"></i><h4>Transparent Pricing</h4><p>Fixed-cost contracts</p></div>
+    </div>
+  </section>
 
-    <!-- CLIENT TESTIMONIALS -->
-    <section class="testimonials-section container">
-        <h2 class="section-title">What our clients say</h2>
-        <div class="testimonials-grid">
-            <div class="testimonial-card">
-                <div class="stars">★★★★★</div>
-                <p>“Fantastic remodeling experience. Our kitchen looks incredible — the team was professional and the craftsmanship is flawless.”</p>
-                <div class="client">— Sarah M., Houston</div>
-            </div>
-            <div class="testimonial-card">
-                <div class="stars">★★★★★</div>
-                <p>“They transformed our 1980s house into a modern masterpiece. We couldn’t be happier with the whole home renovation.”</p>
-                <div class="client">— David & Lisa, Sugar Land</div>
-            </div>
-            <div class="testimonial-card">
-                <div class="stars">★★★★★</div>
-                <p>“Aether exceeded our expectations. Their attention to detail and communication made the process stress‑free.”</p>
-                <div class="client">— The Harrisons, Katy</div>
-            </div>
-        </div>
-    </section>
+  <!-- TESTIMONIALS -->
+  <section class="container">
+    <h2 class="section-title">Kind words</h2>
+    <div class="testimonials-grid">
+      <div class="testimonial-card"><p>“Absolute professionals. Our kitchen remodel was seamless and the craftsmanship is museum-quality.”</p><div class="stars">★★★★★</div><div class="client-name">— Laura B., River Oaks</div></div>
+      <div class="testimonial-card"><p>“They transformed our 1980s house into a modern masterpiece. The team communicated daily.”</p><div class="stars">★★★★★</div><div class="client-name">— The Harrisons, Sugar Land</div></div>
+      <div class="testimonial-card"><p>“Hired for a whole home renovation. Finished on time, on budget, and exceeded our dreams.”</p><div class="stars">★★★★★</div><div class="client-name">— David M., The Woodlands</div></div>
+    </div>
+  </section>
 
-    <!-- SERVICE AREAS -->
-    <section class="areas-section container">
-        <h2 class="section-title">Service areas</h2>
-        <p class="section-subtitle">Serving homeowners across the Houston metro</p>
-        <div class="areas-list">
-            <a href="#">Houston</a>
-            <a href="#">Sugar Land</a>
-            <a href="#">Katy</a>
-            <a href="#">The Woodlands</a>
-            <a href="#">Pearland</a>
-            <a href="#">Cypress</a>
-            <a href="#">Missouri City</a>
-            <a href="#">Pasadena</a>
-            <a href="#">League City</a>
-            <a href="#">Spring</a>
-        </div>
-    </section>
+  <!-- REMODELING PROCESS -->
+  <section class="container">
+    <h2 class="section-title">Our process</h2>
+    <div class="process-steps">
+      <div class="step"><span class="step-number">1</span><h3>Consultation</h3><p>On‑site visit & scope</p></div>
+      <div class="step"><span class="step-number">2</span><h3>Design & Planning</h3><p>3D renderings & material selection</p></div>
+      <div class="step"><span class="step-number">3</span><h3>Construction</h3><p>Skilled trades, daily updates</p></div>
+      <div class="step"><span class="step-number">4</span><h3>Final Walkthrough</h3><p>Perfection before handover</p></div>
+    </div>
+  </section>
 
-    <!-- BLOG / REMODELING TIPS -->
-    <section class="blog-section container">
-        <h2 class="section-title">Remodeling insights</h2>
-        <div class="blog-grid">
-            <article class="blog-card">
-                <img src="https://images.unsplash.com/photo-1556911220-bff6a9057e6f?w=600" alt="Kitchen">
-                <div class="blog-content">
-                    <h4>Kitchen Remodeling Cost in Houston (2025)</h4>
-                    <p>Average pricing, ROI, and how to budget for your luxury kitchen ...</p>
-                    <a href="#" class="card-link">Read more →</a>
-                </div>
-            </article>
-            <article class="blog-card">
-                <img src="https://images.unsplash.com/photo-1588854337236-6889d631faa8?w=600" alt="Bathroom">
-                <div class="blog-content">
-                    <h4>Bathroom Design Trends Houston Homeowners Love</h4>
-                    <p>Spa showers, heated floors, and timeless materials ...</p>
-                    <a href="#" class="card-link">Read more →</a>
-                </div>
-            </article>
-            <article class="blog-card">
-                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600" alt="Construction">
-                <div class="blog-content">
-                    <h4>How Long Does a Home Remodel Take?</h4>
-                    <p>A realistic timeline for kitchens, baths, and whole‑home renovations ...</p>
-                    <a href="#" class="card-link">Read more →</a>
-                </div>
-            </article>
-        </div>
-    </section>
+  <!-- SERVICE AREAS -->
+  <section class="container">
+    <h2 class="section-title">Houston metro areas</h2>
+    <div class="area-links">
+      <a href="#">Houston</a><a href="#">Sugar Land</a><a href="#">Katy</a><a href="#">The Woodlands</a><a href="#">Pearland</a><a href="#">Pasadena</a><a href="#">League City</a><a href="#">Missouri City</a><a href="#">Cypress</a><a href="#">Spring</a>
+    </div>
+  </section>
 
-    <!-- FINAL CALL TO ACTION -->
-    <section class="final-cta">
-        <div class="cta-content">
-            <h2>Ready to Remodel Your Home?</h2>
-            <p>Get a free consultation with our design team today.</p>
-            <div class="cta-buttons">
-                <a href="#" class="btn-primary">Get Free Estimate</a>
-                <a href="#" class="btn-secondary">Call Now</a>
-            </div>
-        </div>
-    </section>
+  <!-- BLOG TEASER -->
+  <section class="container">
+    <h2 class="section-title">Insights</h2>
+    <div class="blog-grid">
+      <div class="blog-card"><img src="https://images.unsplash.com/photo-1556911220-bff6a9057e6f?w=600"><div class="blog-content"><h4>Kitchen remodel cost Houston 2025</h4><p>Pricing, ROI, and material trends ...</p></div></div>
+      <div class="blog-card"><img src="https://images.unsplash.com/photo-1588854337236-6889d631faa8?w=600"><div class="blog-content"><h4>Bathroom renovation timeline</h4><p>What to expect week by week ...</p></div></div>
+      <div class="blog-card"><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600"><div class="blog-content"><h4>Top kitchen trends in Houston</h4><p>Butler’s pantries, hidden appliances ...</p></div></div>
+    </div>
+  </section>
 
-    <!-- FOOTER -->
-    <footer class="footer">
-        <div class="footer-grid container">
-            <div class="footer-col">
-                <div class="footer-logo">Aether<span class="gold-dot">.</span></div>
-                <p>Luxury home remodeling in Houston, TX.</p>
-                <div class="social-links">
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-pinterest"></i></a>
-                </div>
-            </div>
-            <div class="footer-col">
-                <h4>Contact</h4>
-                <p><i class="fas fa-phone-alt"></i> (713) 555-0123</p>
-                <p><i class="fas fa-envelope"></i> info@aetherhtx.com</p>
-                <p><i class="fas fa-map-marker-alt"></i> 2424 Westheimer Rd, Houston, TX 77098</p>
-            </div>
-            <div class="footer-col">
-                <h4>Services</h4>
-                <ul>
-                    <li><a href="#">Kitchen Remodeling</a></li>
-                    <li><a href="#">Bathroom Remodeling</a></li>
-                    <li><a href="#">Whole Home Remodeling</a></li>
-                    <li><a href="#">Home Additions</a></li>
-                    <li><a href="#">Custom Cabinetry</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Service Areas</h4>
-                <ul>
-                    <li><a href="#">Houston</a></li>
-                    <li><a href="#">Sugar Land</a></li>
-                    <li><a href="#">Katy</a></li>
-                    <li><a href="#">The Woodlands</a></li>
-                    <li><a href="#">Pearland</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom container">
-            <p>&copy; 2025 Aether Construction. All rights reserved. | <a href="#">Privacy Policy</a></p>
-        </div>
-    </footer>
+  <!-- FINAL CTA -->
+  <section class="cta-section">
+    <h2>Ready to Transform Your Home?</h2>
+    <div class="cta-buttons">
+      <a href="#" class="btn-primary">Get Free Estimate</a>
+      <a href="#" class="btn-secondary">Call Now</a>
+    </div>
+  </section>
 
-    <!-- External JavaScript (to be created) -->
-    <script src="script.js"></script>
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid container">
+      <div><div class="footer-logo">Aether<span style="color:#b79a5f;">.</span></div><p>Houston’s premier luxury remodeling atelier.</p></div>
+      <div class="footer-links"><h4>Services</h4><a href="#">Kitchen Remodel</a><a href="#">Bathroom Remodel</a><a href="#">Whole Home</a><a href="#">Additions</a></div>
+      <div class="footer-links"><h4>Areas</h4><a href="#">Katy</a><a href="#">Sugar Land</a><a href="#">The Woodlands</a><a href="#">Memorial</a></div>
+      <div class="footer-contact"><h4>Contact</h4><p><i class="fas fa-phone-alt"></i> (713) 555-0123</p><p><i class="fas fa-envelope"></i> info@aetherhtx.com</p><p><i class="fas fa-map-marker-alt"></i> 2424 Westheimer Rd, Houston, TX 77098</p><div class="social"><i class="fab fa-instagram"></i><i class="fab fa-facebook"></i><i class="fab fa-pinterest"></i></div></div>
+    </div>
+    <div class="copyright">© 2025 Aether Construction — Luxury Home Remodeling Houston. All rights reserved.</div>
+  </footer>
+
+  <!-- SIMPLE SCRIPT FOR STICKY NAV & BEFORE/AFTER SLIDER -->
+  <script>
+    // Sticky navigation
+    window.addEventListener('scroll', function() {
+      const nav = document.getElementById('navbar');
+      if (window.scrollY > 50) nav.classList.add('scrolled');
+      else nav.classList.remove('scrolled');
+    });
+
+    // Before/after slider manual control
+    const slider = document.getElementById('sliderRange');
+    if (slider) {
+      const imgComp = document.querySelector('.img-comp-img:last-child');
+      slider.addEventListener('input', function(e) {
+        const val = e.target.value + '%';
+        imgComp.style.width = val;
+        slider.style.left = val;
+      });
+    }
+  </script>
 </body>
 </html>
